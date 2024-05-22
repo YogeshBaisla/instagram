@@ -13,7 +13,7 @@ const StoryThumbnail = styled.img`
   width: 80px;
   height: 80px;
   margin-right: 10px;
-  border-radius: 10px;
+  border-radius: 100px;
   cursor: pointer;
 `;
 
@@ -23,15 +23,7 @@ interface Story {
   duration: number;
 }
 
-const StoryList: React.FC<{ onSelect: (story: Story) => void }> = ({ onSelect }) => {
-  const [stories, setStories] = useState<Story[]>([]);
-
-  useEffect(() => {
-    axios.get('/api/stories')
-      .then(response => setStories(response.data))
-      .catch(error => console.error('Error fetching stories:', error));
-  }, []);
-
+const StoryList: React.FC<{ stories:Story[];onSelect: (story: Story) => void }> = ({ stories,onSelect }) => {
   return (
     <StoryListContainer>
       {stories.map(story => (
